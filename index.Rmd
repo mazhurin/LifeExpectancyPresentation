@@ -1,0 +1,66 @@
+---
+title       : Life Expectancy Calculator
+subtitle    : 
+author      : Anton Mazhurin
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [bootstrap, quiz]
+ext_widgets : {rCharts: [libraries/nvd3]}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## What is Life Expectancy?
+
+Life expectancy is a statistical measure of how long an organism may live, based on:
+
+
+* the year of birth
+* the current age 
+* other demographic factors including sex.
+
+---
+## Online Life Expectancy Calculator
+
+* You can try our Life Expectancy calculator online [here](https://greymemory.shinyapps.io/LifeExpectancy/)
+
+* This Life expectancy calculator is base on the [data](http://apps.who.int/gho/data/node.main.688?lang=en) published by World Health Organization.
+
+---
+## Box sex life expectancy by Country
+
+```{r echo = F, results = 'asis'}
+require(rCharts)
+
+# load the data
+d <- read.csv("data.csv", header = TRUE)
+
+x <- subset(d, Country %in% c(
+  "Australia",
+  'Canada', 
+  "France", 
+  'Germany',
+  "United States of America",
+  'China',  
+  "Russian Federation",
+  "Rwanda",
+  'Brasil',
+  'India',
+  'Japan'
+  ))
+
+n1 <- nPlot(Both.sexes ~ Year,  type = 'multiBarChart', group = 'Country', data = x)
+n1$print('chart1')
+```
+
+---
+## Why Life Expectancy matters?
+
+* The dramatic increase in average life expectancy during the 20th century ranks as one of society's greatest achievements. 
+
+* For the reason that life expectancy is rising, the number of people aged *60 years and above* have tripled from its number in 1950 to **600 million** in 2000, in 2006 it has surpassed to **700 million**, and is projected that the population will reach around the **2 billion** by 2050.
+
+*  For the entirety of recorded human history, the world has never seen as aged a population as currently exists globally
+
